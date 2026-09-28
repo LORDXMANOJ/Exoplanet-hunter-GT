@@ -1,6 +1,7 @@
 /**
- * Exoplanet Hunter - Interactive Astronomical Plotting
- * High-performance canvas-based charting for light curves, phase folding, and BLS periodogram.
+ * Exoplanet Hunter - Scientific Publication Plotting (Light Theme)
+ * High-performance canvas charting formatted for astrophysical papers and observational reports.
+ * High data-ink ratio: clean white canvas, slate data points, solar vermilion transit markers.
  */
 
 export class LightCurveChart {
@@ -27,7 +28,7 @@ export class LightCurveChart {
     this.hoverPoint = null;
     this.simTrackerPhase = null;
 
-    this.padding = { top: 30, right: 30, bottom: 45, left: 65 };
+    this.padding = { top: 25, right: 25, bottom: 42, left: 65 };
 
     this.init();
   }
@@ -62,11 +63,9 @@ export class LightCurveChart {
         mouseY <= this.height - this.padding.bottom &&
         this.time.length > 0
       ) {
-        // Convert mouseX to time
         const plotW = this.width - this.padding.left - this.padding.right;
         const tVal = this.minTime + ((mouseX - this.padding.left) / plotW) * (this.maxTime - this.minTime);
 
-        // Find nearest point
         let nearestIdx = 0;
         let minDist = Infinity;
         for (let i = 0; i < this.time.length; i++) {
@@ -158,11 +157,10 @@ export class LightCurveChart {
     const h = this.height;
 
     ctx.clearRect(0, 0, w, h);
-
     if (w <= 0 || h <= 0) return;
 
-    // Background
-    ctx.fillStyle = '#0a0e17';
+    // Pure White Canvas Background
+    ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, w, h);
 
     const plotX = this.padding.left;
@@ -170,14 +168,19 @@ export class LightCurveChart {
     const plotW = w - this.padding.left - this.padding.right;
     const plotH = h - this.padding.top - this.padding.bottom;
 
+    // Chart Area Border
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(plotX, plotY, plotW, plotH);
+
     // Grid lines
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.07)';
+    ctx.strokeStyle = '#f1f5f9';
     ctx.lineWidth = 1;
 
     // Horizontal grid & Y-axis labels
     const numYGrid = 5;
-    ctx.fillStyle = '#8b9bb4';
-    ctx.font = '11px "JetBrains Mono", monospace';
+    ctx.fillStyle = '#64748b';
+    ctx.font = '10px "JetBrains Mono", monospace';
     ctx.textAlign = 'right';
     ctx.textBaseline = 'middle';
 
@@ -188,7 +191,7 @@ export class LightCurveChart {
       ctx.moveTo(plotX, y);
       ctx.lineTo(plotX + plotW, y);
       ctx.stroke();
-      ctx.fillText(fVal.toFixed(4), plotX - 10, y);
+      ctx.fillText(fVal.toFixed(4), plotX - 8, y);
     }
 
     // Vertical grid & X-axis labels
@@ -203,26 +206,26 @@ export class LightCurveChart {
       ctx.moveTo(x, plotY);
       ctx.lineTo(x, plotY + plotH);
       ctx.stroke();
-      ctx.fillText(tVal.toFixed(1) + 'd', x, plotY + plotH + 8);
+      ctx.fillText(tVal.toFixed(1) + 'd', x, plotY + plotH + 6);
     }
 
-    // Axis Labels
-    ctx.fillStyle = '#64748b';
-    ctx.font = '12px "Space Grotesk", sans-serif';
-    ctx.fillText('Time (Days)', plotX + plotW / 2, h - 14);
+    // Axis Titles (Editorial style)
+    ctx.fillStyle = '#0f172a';
+    ctx.font = '600 11px "Space Grotesk", sans-serif';
+    ctx.fillText('Time (BJD - 2454833, Days)', plotX + plotW / 2, h - 14);
 
     ctx.save();
-    ctx.translate(16, plotY + plotH / 2);
+    ctx.translate(14, plotY + plotH / 2);
     ctx.rotate(-Math.PI / 2);
     ctx.textAlign = 'center';
-    ctx.fillText('Normalized Stellar Flux', 0, 0);
+    ctx.fillText('Normalized Flux (F / F₀)', 0, 0);
     ctx.restore();
 
     // Baseline reference line at Flux = 1.0000
     if (this.minFlux <= 1.0 && this.maxFlux >= 1.0) {
       const base1Y = this.fluxToY(1.0);
       ctx.save();
-      ctx.strokeStyle = 'rgba(0, 242, 254, 0.35)';
+      ctx.strokeStyle = '#94a3b8';
       ctx.setLineDash([4, 4]);
       ctx.beginPath();
       ctx.moveTo(plotX, base1Y);
@@ -232,14 +235,14 @@ export class LightCurveChart {
     }
 
     if (this.time.length === 0 || this.flux.length === 0) {
-      ctx.fillStyle = '#64748b';
-      ctx.font = '14px "Space Grotesk", sans-serif';
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '12px "Space Grotesk", sans-serif';
       ctx.textAlign = 'center';
       ctx.fillText('No Light Curve Data Loaded', plotX + plotW / 2, plotY + plotH / 2);
       return;
     }
 
-    // Highlight detected transit dips with glowing background windows
+    // Highlight detected transit dips with subtle solar tint
     for (const region of this.transitRegions) {
       const tStart = this.time[region.startIndex];
       const tEnd = this.time[region.endIndex];
@@ -247,10 +250,10 @@ export class LightCurveChart {
       const x2 = Math.min(plotX + plotW, this.timeToX(tEnd));
       const wRegion = Math.max(4, x2 - x1);
 
-      ctx.fillStyle = 'rgba(0, 242, 254, 0.12)';
+      ctx.fillStyle = 'rgba(194, 65, 12, 0.08)';
       ctx.fillRect(x1, plotY, wRegion, plotH);
 
-      ctx.strokeStyle = 'rgba(0, 242, 254, 0.4)';
+      ctx.strokeStyle = 'rgba(194, 65, 12, 0.35)';
       ctx.strokeRect(x1, plotY, wRegion, plotH);
     }
 
@@ -260,9 +263,9 @@ export class LightCurveChart {
     ctx.rect(plotX, plotY, plotW, plotH);
     ctx.clip();
 
-    // Draw connecting curve
-    ctx.strokeStyle = '#3b82f6';
-    ctx.lineWidth = 1.6;
+    // Connecting trend curve
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 1.2;
     ctx.beginPath();
     let started = false;
 
@@ -281,8 +284,8 @@ export class LightCurveChart {
     }
     ctx.stroke();
 
-    // Draw individual flux point dots
-    ctx.fillStyle = '#60a5fa';
+    // Individual photometric flux points (clean slate/carbon)
+    ctx.fillStyle = '#334155';
     for (let i = 0; i < this.time.length; i++) {
       const t = this.time[i];
       if (t < this.minTime || t > this.maxTime) continue;
@@ -290,60 +293,50 @@ export class LightCurveChart {
       const y = this.fluxToY(this.flux[i]);
 
       ctx.beginPath();
-      ctx.arc(x, y, 1.8, 0, Math.PI * 2);
+      ctx.arc(x, y, 1.6, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // Draw Transit dips marker dots in electric cyan
+    // Transit dips points (Solar Vermilion)
     for (const region of this.transitRegions) {
       for (let i = region.startIndex; i <= region.endIndex; i++) {
         const x = this.timeToX(this.time[i]);
         const y = this.fluxToY(this.flux[i]);
-        ctx.fillStyle = '#00f2fe';
+        ctx.fillStyle = '#c2410c';
         ctx.beginPath();
-        ctx.arc(x, y, 3, 0, Math.PI * 2);
+        ctx.arc(x, y, 2.5, 0, Math.PI * 2);
         ctx.fill();
       }
     }
 
-    // If simulator tracker phase is active, draw live animated vertical scanner
+    // Live Synchronized Tracker
     if (this.simTrackerPhase !== null && this.period) {
-      // Map phase to active transit periods in view
-      const tSpan = this.maxTime - this.minTime;
       const p = this.period;
-      const activeTransitTimes = [];
       for (let t = Math.floor(this.minTime / p) * p; t <= this.maxTime + p; t += p) {
-        activeTransitTimes.push(t);
-      }
-
-      for (const tTransit of activeTransitTimes) {
-        // Shift by phase around transit center
-        const tPos = tTransit + (this.simTrackerPhase - 0.5) * (p * 0.3);
+        const tPos = t + (this.simTrackerPhase - 0.5) * (p * 0.3);
         if (tPos >= this.minTime && tPos <= this.maxTime) {
           const sx = this.timeToX(tPos);
-          ctx.strokeStyle = '#ff9800';
-          ctx.lineWidth = 2;
+          ctx.strokeStyle = '#c2410c';
+          ctx.lineWidth = 1.5;
           ctx.beginPath();
           ctx.moveTo(sx, plotY);
           ctx.lineTo(sx, plotY + plotH);
           ctx.stroke();
 
-          // Glowing pulse dot
-          ctx.fillStyle = '#ff9800';
+          ctx.fillStyle = '#c2410c';
           ctx.beginPath();
-          ctx.arc(sx, plotY + 12, 4.5, 0, Math.PI * 2);
+          ctx.arc(sx, plotY + 10, 3.5, 0, Math.PI * 2);
           ctx.fill();
         }
       }
     }
 
-    // Hover Tooltip
+    // Hover Tooltip Crosshairs
     if (this.hoverPoint) {
-      ctx.strokeStyle = '#ffffff';
+      ctx.strokeStyle = '#0f172a';
       ctx.lineWidth = 1;
       ctx.setLineDash([2, 2]);
 
-      // Crosshairs
       ctx.beginPath();
       ctx.moveTo(this.hoverPoint.x, plotY);
       ctx.lineTo(this.hoverPoint.x, plotY + plotH);
@@ -352,52 +345,51 @@ export class LightCurveChart {
       ctx.stroke();
       ctx.setLineDash([]);
 
-      // Point circle
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = '#0f172a';
       ctx.beginPath();
-      ctx.arc(this.hoverPoint.x, this.hoverPoint.y, 5, 0, Math.PI * 2);
+      ctx.arc(this.hoverPoint.x, this.hoverPoint.y, 4, 0, Math.PI * 2);
       ctx.fill();
     }
     ctx.restore();
 
-    // Render tooltip box outside clip
+    // Hover Tooltip Box (Clean light publication card)
     if (this.hoverPoint) {
-      const tipText1 = `Time: ${this.hoverPoint.time.toFixed(4)} d`;
-      const tipText2 = `Flux: ${this.hoverPoint.flux.toFixed(5)}`;
-      const boxW = 145;
-      const boxH = 46;
-      let boxX = this.hoverPoint.x + 12;
-      let boxY = this.hoverPoint.y - 25;
+      const tipText1 = `t = ${this.hoverPoint.time.toFixed(4)} d`;
+      const tipText2 = `flux = ${this.hoverPoint.flux.toFixed(5)}`;
+      const boxW = 135;
+      const boxH = 42;
+      let boxX = this.hoverPoint.x + 10;
+      let boxY = this.hoverPoint.y - 20;
 
-      if (boxX + boxW > w - 10) boxX = this.hoverPoint.x - boxW - 12;
+      if (boxX + boxW > w - 10) boxX = this.hoverPoint.x - boxW - 10;
       if (boxY < plotY + 5) boxY = plotY + 5;
 
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.92)';
-      ctx.strokeStyle = '#38bdf8';
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = '#cbd5e1';
       ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.roundRect(boxX, boxY, boxW, boxH, 6);
+      ctx.roundRect(boxX, boxY, boxW, boxH, 4);
       ctx.fill();
       ctx.stroke();
 
-      ctx.fillStyle = '#e2e8f0';
-      ctx.font = '11px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#0f172a';
+      ctx.font = '10px "JetBrains Mono", monospace';
       ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
-      ctx.fillText(tipText1, boxX + 10, boxY + 8);
-      ctx.fillText(tipText2, boxX + 10, boxY + 24);
+      ctx.fillText(tipText1, boxX + 8, boxY + 7);
+      ctx.fillText(tipText2, boxX + 8, boxY + 22);
     }
   }
 }
 
 /**
- * Phase-Folded Light Curve Chart (folds time series by orbital period P)
+ * Phase-Folded Light Curve Chart (White Theme)
  */
 export class PhaseFoldedChart {
   constructor(canvasElement) {
     this.canvas = canvasElement;
     this.ctx = canvasElement.getContext('2d');
-    this.padding = { top: 25, right: 25, bottom: 40, left: 60 };
+    this.padding = { top: 25, right: 25, bottom: 42, left: 65 };
     this.init();
   }
 
@@ -423,12 +415,12 @@ export class PhaseFoldedChart {
     const h = this.height;
 
     ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = '#0a0e17';
+    ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, w, h);
 
     if (!time || !flux || time.length === 0 || !period || period <= 0) {
-      ctx.fillStyle = '#64748b';
-      ctx.font = '13px "Space Grotesk", sans-serif';
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '12px "Space Grotesk", sans-serif';
       ctx.textAlign = 'center';
       ctx.fillText('Run Analysis to Generate Phase-Folded Curve', w / 2, h / 2);
       return;
@@ -439,7 +431,10 @@ export class PhaseFoldedChart {
     const plotW = w - this.padding.left - this.padding.right;
     const plotH = h - this.padding.top - this.padding.bottom;
 
-    // Fold phases into range [-0.5, 0.5] centered at transit minimum
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(plotX, plotY, plotW, plotH);
+
     const points = [];
     for (let i = 0; i < time.length; i++) {
       let phase = (time[i] % period) / period;
@@ -458,9 +453,9 @@ export class PhaseFoldedChart {
     const fluxToY = f => plotY + (1 - (f - minF) / (maxF - minF)) * plotH;
 
     // Grid & labels
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.07)';
+    ctx.strokeStyle = '#f1f5f9';
     ctx.lineWidth = 1;
-    ctx.fillStyle = '#8b9bb4';
+    ctx.fillStyle = '#64748b';
     ctx.font = '10px "JetBrains Mono", monospace';
     ctx.textAlign = 'center';
 
@@ -470,7 +465,7 @@ export class PhaseFoldedChart {
       ctx.moveTo(x, plotY);
       ctx.lineTo(x, plotY + plotH);
       ctx.stroke();
-      ctx.fillText(ph.toFixed(2), x, plotY + plotH + 8);
+      ctx.fillText(ph.toFixed(2), x, plotY + plotH + 6);
     }
 
     ctx.textAlign = 'right';
@@ -484,17 +479,17 @@ export class PhaseFoldedChart {
       ctx.fillText(fVal.toFixed(4), plotX - 8, y + 3);
     }
 
-    // Draw phase-folded points
-    ctx.fillStyle = 'rgba(96, 165, 250, 0.45)';
+    // Phase-folded points (clean carbon)
+    ctx.fillStyle = 'rgba(51, 65, 85, 0.45)';
     for (const p of points) {
       const x = phaseToX(p.phase);
       const y = fluxToY(p.flux);
       ctx.beginPath();
-      ctx.arc(x, y, 1.8, 0, Math.PI * 2);
+      ctx.arc(x, y, 1.6, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // Binned average curve (reveals clean transit U-profile)
+    // Binned average curve (Solar Vermilion model profile)
     const numBins = 40;
     const bins = Array.from({ length: numBins }, () => []);
     for (const p of points) {
@@ -502,8 +497,8 @@ export class PhaseFoldedChart {
       bins[bIdx].push(p.flux);
     }
 
-    ctx.strokeStyle = '#00F2FE';
-    ctx.lineWidth = 2.5;
+    ctx.strokeStyle = '#c2410c';
+    ctx.lineWidth = 2.2;
     ctx.beginPath();
     let binStarted = false;
     for (let i = 0; i < numBins; i++) {
@@ -521,22 +516,21 @@ export class PhaseFoldedChart {
     }
     ctx.stroke();
 
-    // Axis titles
-    ctx.fillStyle = '#64748b';
-    ctx.font = '11px "Space Grotesk", sans-serif';
+    ctx.fillStyle = '#0f172a';
+    ctx.font = '600 11px "Space Grotesk", sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(`Orbital Phase (Folded at P = ${period.toFixed(4)} days)`, plotX + plotW / 2, h - 8);
+    ctx.fillText(`Orbital Phase (Folded at P = ${period.toFixed(4)} days)`, plotX + plotW / 2, h - 14);
   }
 }
 
 /**
- * BLS Periodogram Chart (Period vs Detection Power)
+ * BLS Periodogram Chart (White Theme)
  */
 export class PeriodogramChart {
   constructor(canvasElement) {
     this.canvas = canvasElement;
     this.ctx = canvasElement.getContext('2d');
-    this.padding = { top: 25, right: 25, bottom: 40, left: 55 };
+    this.padding = { top: 25, right: 25, bottom: 42, left: 60 };
     this.init();
   }
 
@@ -562,12 +556,12 @@ export class PeriodogramChart {
     const h = this.height;
 
     ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = '#0a0e17';
+    ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, w, h);
 
     if (!spectrum || spectrum.length === 0) {
-      ctx.fillStyle = '#64748b';
-      ctx.font = '13px "Space Grotesk", sans-serif';
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '12px "Space Grotesk", sans-serif';
       ctx.textAlign = 'center';
       ctx.fillText('BLS Periodogram Generated Post-Analysis', w / 2, h / 2);
       return;
@@ -578,6 +572,10 @@ export class PeriodogramChart {
     const plotW = w - this.padding.left - this.padding.right;
     const plotH = h - this.padding.top - this.padding.bottom;
 
+    ctx.strokeStyle = '#cbd5e1';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(plotX, plotY, plotW, plotH);
+
     const minP = spectrum[0].period;
     const maxP = spectrum[spectrum.length - 1].period;
     const maxPower = Math.max(10, Math.max(...spectrum.map(s => s.power)) * 1.15);
@@ -586,9 +584,9 @@ export class PeriodogramChart {
     const pToY = pow => plotY + (1 - pow / maxPower) * plotH;
 
     // Grid
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.07)';
+    ctx.strokeStyle = '#f1f5f9';
     ctx.lineWidth = 1;
-    ctx.fillStyle = '#8b9bb4';
+    ctx.fillStyle = '#64748b';
     ctx.font = '10px "JetBrains Mono", monospace';
     ctx.textAlign = 'center';
 
@@ -598,7 +596,7 @@ export class PeriodogramChart {
       ctx.moveTo(x, plotY);
       ctx.lineTo(x, plotY + plotH);
       ctx.stroke();
-      ctx.fillText(p + 'd', x, plotY + plotH + 8);
+      ctx.fillText(p + 'd', x, plotY + plotH + 6);
     }
 
     ctx.textAlign = 'right';
@@ -612,12 +610,8 @@ export class PeriodogramChart {
       ctx.fillText(powVal.toFixed(0), plotX - 8, y + 3);
     }
 
-    // Spectrum Area & Line
-    const grad = ctx.createLinearGradient(0, plotY, 0, plotY + plotH);
-    grad.addColorStop(0, 'rgba(168, 85, 247, 0.4)');
-    grad.addColorStop(1, 'rgba(168, 85, 247, 0.02)');
-
-    ctx.fillStyle = grad;
+    // Spectrum Area & Line (Clean Solar Vermilion)
+    ctx.fillStyle = 'rgba(194, 65, 12, 0.08)';
     ctx.beginPath();
     ctx.moveTo(pToX(spectrum[0].period), plotY + plotH);
     for (const pt of spectrum) {
@@ -627,8 +621,8 @@ export class PeriodogramChart {
     ctx.closePath();
     ctx.fill();
 
-    ctx.strokeStyle = '#c084fc';
-    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#c2410c';
+    ctx.lineWidth = 1.8;
     ctx.beginPath();
     ctx.moveTo(pToX(spectrum[0].period), pToY(spectrum[0].power));
     for (const pt of spectrum) {
@@ -641,7 +635,7 @@ export class PeriodogramChart {
       const peakX = pToX(bestPeriod);
       const peakY = pToY(bestPower);
 
-      ctx.strokeStyle = '#00F2FE';
+      ctx.strokeStyle = '#0f172a';
       ctx.setLineDash([3, 3]);
       ctx.beginPath();
       ctx.moveTo(peakX, plotY);
@@ -649,19 +643,19 @@ export class PeriodogramChart {
       ctx.stroke();
       ctx.setLineDash([]);
 
-      ctx.fillStyle = '#00F2FE';
+      ctx.fillStyle = '#0f172a';
       ctx.beginPath();
-      ctx.arc(peakX, peakY, 5, 0, Math.PI * 2);
+      ctx.arc(peakX, peakY, 4.5, 0, Math.PI * 2);
       ctx.fill();
 
-      ctx.font = '11px "Space Grotesk", sans-serif';
+      ctx.font = '600 11px "Space Grotesk", sans-serif';
       ctx.textAlign = 'left';
       ctx.fillText(`Peak: ${bestPeriod.toFixed(3)} d`, peakX + 8, peakY - 6);
     }
 
-    ctx.fillStyle = '#64748b';
-    ctx.font = '11px "Space Grotesk", sans-serif';
+    ctx.fillStyle = '#0f172a';
+    ctx.font = '600 11px "Space Grotesk", sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('Candidate Orbital Period (Days) - BLS Power Spectrum', plotX + plotW / 2, h - 8);
+    ctx.fillText('Candidate Orbital Period (Days) - BLS Power Spectrum', plotX + plotW / 2, h - 14);
   }
 }

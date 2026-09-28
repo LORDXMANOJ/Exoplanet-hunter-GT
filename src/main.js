@@ -485,15 +485,15 @@ function runClassification() {
   predictionTargetLabel.textContent = `Target: ${state.currentTarget?.name || 'Custom Target'}`;
 
   if (isCandidate) {
-    predictionBanner.className = 'glass-panel prediction-banner candidate';
+    predictionBanner.className = 'prediction-banner candidate';
     predictionBadge.className = 'prediction-badge badge-candidate';
     predictionBadgeText.textContent = 'TRANSIT CANDIDATE';
     predictionHeadline.textContent = 'Confirmed Exoplanetary Transit Signal Detected';
     predictionDescription.textContent =
       `Periodic U-shaped flux attenuation detected with SNR of ${state.features.snr.toFixed(1)}. Profile strongly matches occultation by an orbiting exoplanetary body.`;
-    circleProgress.style.stroke = 'var(--accent-success)';
+    circleProgress.style.stroke = 'var(--status-confirmed)';
     rankingScoreText.textContent = `Candidate Ranking: #1 [Tier-A]`;
-    rankingScoreText.style.color = 'var(--accent-success)';
+    rankingScoreText.style.color = 'var(--status-confirmed)';
 
     // Trigger celebration confetti
     confetti({
@@ -502,15 +502,15 @@ function runClassification() {
       origin: { y: 0.6 }
     });
   } else {
-    predictionBanner.className = 'glass-panel prediction-banner non-candidate';
+    predictionBanner.className = 'prediction-banner non-candidate';
     predictionBadge.className = 'prediction-badge badge-noncandidate';
     predictionBadgeText.textContent = 'NON-TRANSIT / FALSE POSITIVE';
     predictionHeadline.textContent = 'Transit Signature Not Detected / Disqualified';
     predictionDescription.textContent =
       `Signal characteristics fail planetary occultation criteria. Profile indicates either eclipsing stellar binary, solar flare variability, or instrumental noise floor.`;
-    circleProgress.style.stroke = 'var(--accent-danger)';
+    circleProgress.style.stroke = 'var(--status-rejected)';
     rankingScoreText.textContent = `Candidate Ranking: Disqualified`;
-    rankingScoreText.style.color = 'var(--accent-danger)';
+    rankingScoreText.style.color = 'var(--status-rejected)';
   }
 
   // Animated circle progress
@@ -657,16 +657,16 @@ function showToast(message, isError = false) {
   const toast = document.createElement('div');
   toast.className = 'toast';
   if (isError) {
-    toast.style.borderColor = 'var(--accent-danger)';
-    toast.innerHTML = `<span style="color: var(--accent-danger);">⚠</span> ${message}`;
+    toast.style.borderColor = 'var(--status-rejected)';
+    toast.innerHTML = `<span style="color: var(--status-rejected); font-weight: bold;">⚠</span> ${message}`;
   } else {
-    toast.innerHTML = `<span style="color: var(--accent-cyan);">✦</span> ${message}`;
+    toast.innerHTML = `<span style="color: var(--brand-solar); font-weight: bold;">●</span> ${message}`;
   }
   toastContainer.appendChild(toast);
 
   setTimeout(() => {
     toast.style.opacity = '0';
-    toast.style.transition = 'opacity 0.3s ease';
-    setTimeout(() => toast.remove(), 300);
-  }, 3200);
+    toast.style.transition = 'opacity 0.2s ease';
+    setTimeout(() => toast.remove(), 250);
+  }, 3000);
 }

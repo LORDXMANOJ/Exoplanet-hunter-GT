@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Exoplanet Hunter AI - ML-Based Transit Detection (Kepler & TESS)</title>
-  <meta name="description" content="AI & Machine Learning platform for detecting exoplanet transit signatures from real NASA Kepler and TESS light curves.">
+  <title>Exoplanet Hunter AI - Astronomical Transit Detection (Kepler & TESS)</title>
+  <meta name="description" content="Scientific research platform for machine learning-based exoplanet transit detection using NASA Kepler and TESS photometric time series.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
@@ -15,65 +15,65 @@
   <!-- Site Navigation Header -->
   <header class="site-header">
     <div class="brand-section">
-      <div class="brand-logo-glow" title="Exoplanet Hunter AI"></div>
+      <div class="brand-mark">EH</div>
       <div class="brand-title-wrap">
         <h1>EXOPLANET HUNTER AI</h1>
-        <p class="brand-subtitle">ML-Based Transit Detection Using NASA Kepler & TESS Light Curves</p>
+        <p class="brand-subtitle">Transit Detection Pipeline • NASA Kepler & TESS Photometric Archives</p>
       </div>
     </div>
 
     <div class="header-badges">
       <div class="status-pill">
         <span class="indicator-dot"></span>
-        <span>NASA MAST ARCHIVE READY</span>
+        <span>MAST ARCHIVE ACTIVE</span>
       </div>
       <div class="status-pill">
-        <span style="color: var(--accent-cyan); font-weight: bold;">ML ENGINE:</span>
-        <span id="headerActiveModel">Random Forest (Weka)</span>
+        <span style="color: var(--text-heading); font-weight: 700;">ENGINE:</span>
+        <span id="headerActiveModel">Random Forest</span>
       </div>
     </div>
 
     <div class="header-actions">
-      <button class="btn btn-secondary btn-sm" id="btnOpenProposal" title="View Project Proposal & Slides Context">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-        Project Slides & Team
+      <button class="btn btn-secondary btn-sm" id="btnOpenProposal" title="View Project Proposal & Research Details">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        Research Presentation & Team
       </button>
-      <button class="btn btn-secondary btn-sm" id="btnExportReport" title="Export Astronomical Candidate Report">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      <button class="btn btn-secondary btn-sm" id="btnExportReport" title="Export Astronomical Discovery Report">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
         Export Report
       </button>
       <button class="btn btn-primary btn-sm" id="btnRunFullPipeline">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
         Run Full Pipeline
       </button>
     </div>
   </header>
 
-  <!-- Stepper Pipeline matching Slide 5 Architecture -->
+  <!-- Stepper Pipeline Architecture -->
   <nav class="system-pipeline-tracker" aria-label="System Processing Stages">
     <div class="pipeline-step active" data-step="1">
       <span class="step-number">1</span>
-      <span>Data Input & Acquisition</span>
+      <span>1. Data Acquisition</span>
     </div>
-    <span class="pipeline-arrow">➔</span>
+    <span class="pipeline-arrow">→</span>
     <div class="pipeline-step" data-step="2">
       <span class="step-number">2</span>
-      <span>Data Preprocessing</span>
+      <span>2. Signal Preprocessing</span>
     </div>
-    <span class="pipeline-arrow">➔</span>
+    <span class="pipeline-arrow">→</span>
     <div class="pipeline-step" data-step="3">
       <span class="step-number">3</span>
-      <span>Feature Extraction</span>
+      <span>3. Transit Feature Extraction</span>
     </div>
-    <span class="pipeline-arrow">➔</span>
+    <span class="pipeline-arrow">→</span>
     <div class="pipeline-step" data-step="4">
       <span class="step-number">4</span>
-      <span>ML Classifier</span>
+      <span>4. ML Classification</span>
     </div>
-    <span class="pipeline-arrow">➔</span>
+    <span class="pipeline-arrow">→</span>
     <div class="pipeline-step" data-step="5">
       <span class="step-number">5</span>
-      <span>Transit Visualizer</span>
+      <span>5. Transit Visualizer</span>
     </div>
   </nav>
 
@@ -84,17 +84,17 @@
     <aside class="control-sidebar">
 
       <!-- Card 1: Data Acquisition -->
-      <section class="glass-panel sidebar-card" id="cardDataInput">
+      <section class="card-panel" id="cardDataInput">
         <div class="card-header">
           <h2 class="card-title">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-            1. Data Acquisition
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            1. Target Ingestion
           </h2>
           <span class="status-pill" id="targetTypePill">Kepler Target</span>
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="selectPresetTarget">Select Target Light Curve</label>
+          <label class="form-label" for="selectPresetTarget">Select Astronomical Target</label>
           <select id="selectPresetTarget" class="select-custom">
             <!-- Populated via datasets.js -->
           </select>
@@ -103,11 +103,11 @@
         <div style="display: flex; gap: 8px; margin-bottom: 12px;">
           <label class="btn btn-secondary btn-sm" style="flex: 1; cursor: pointer; text-align: center;">
             <input type="file" id="inputCsvFile" accept=".csv,.txt,.dat" style="display: none;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
             Upload CSV/FITS
           </label>
           <button class="btn btn-secondary btn-sm" id="btnOpenSyntheticStudio" style="flex: 1;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
             Synth Studio
           </button>
         </div>
@@ -127,26 +127,26 @@
             <span class="spec-val" id="specStarRadius">1.06 R☉</span>
           </div>
           <div class="spec-item">
-            <span class="spec-key">Data Points</span>
+            <span class="spec-key">Observational Cadence</span>
             <span class="spec-val" id="specDataPoints">480 pts</span>
           </div>
         </div>
       </section>
 
       <!-- Card 2: Data Preprocessing -->
-      <section class="glass-panel sidebar-card" id="cardPreprocessing">
+      <section class="card-panel" id="cardPreprocessing">
         <div class="card-header">
           <h2 class="card-title">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-            2. Preprocessing
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            2. Signal Conditioning
           </h2>
-          <span style="font-size: 0.72rem; color: var(--accent-cyan);" id="preprocStatus">Ready</span>
+          <span style="font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono);" id="preprocStatus">Ready</span>
         </div>
 
         <div class="toggle-row">
           <div class="toggle-label-wrap">
             <span class="toggle-name">Sigma-Clipping Outliers</span>
-            <span class="toggle-desc">Rejects extreme instrumental flares</span>
+            <span class="toggle-desc">Filters instrumental flares</span>
           </div>
           <label class="switch">
             <input type="checkbox" id="checkSigmaClipping" checked>
@@ -167,7 +167,7 @@
         <div class="toggle-row">
           <div class="toggle-label-wrap">
             <span class="toggle-name">Normalize Baseline</span>
-            <span class="toggle-desc">Scale median flux to 1.000</span>
+            <span class="toggle-desc">Sets out-of-transit median = 1.000</span>
           </div>
           <label class="switch">
             <input type="checkbox" id="checkNormalize" checked>
@@ -178,7 +178,7 @@
         <div class="toggle-row">
           <div class="toggle-label-wrap">
             <span class="toggle-name">Detrend Low-Freq Drift</span>
-            <span class="toggle-desc">Remove stellar rotation baseline</span>
+            <span class="toggle-desc">Flattens stellar rotation trends</span>
           </div>
           <label class="switch">
             <input type="checkbox" id="checkDetrend" checked>
@@ -189,7 +189,7 @@
         <div class="toggle-row">
           <div class="toggle-label-wrap">
             <span class="toggle-name">Noise Smoothing</span>
-            <span class="toggle-desc">Boxcar filter for high-jitter curves</span>
+            <span class="toggle-desc">Boxcar filter for high-noise series</span>
           </div>
           <label class="switch">
             <input type="checkbox" id="checkSmooth">
@@ -203,20 +203,20 @@
       </section>
 
       <!-- Card 3: Machine Learning Classifier -->
-      <section class="glass-panel sidebar-card" id="cardMLClassifier">
+      <section class="card-panel" id="cardMLClassifier">
         <div class="card-header">
           <h2 class="card-title">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4c0 .8-.2 1.5-.6 2.1l2.5 2.5a4 4 0 1 1-1.4 1.4l-2.5-2.5A4 4 0 1 1 12 2z"></path><path d="M12 14v8"></path><path d="M8 18h8"></path></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4c0 .8-.2 1.5-.6 2.1l2.5 2.5a4 4 0 1 1-1.4 1.4l-2.5-2.5A4 4 0 1 1 12 2z"></path><path d="M12 14v8"></path><path d="M8 18h8"></path></svg>
             3. ML Classifier
           </h2>
-          <span class="status-pill" style="color: var(--accent-success); border-color: rgba(0,230,118,0.3);">Trained</span>
+          <span class="status-pill" style="color: var(--status-confirmed); border-color: var(--status-confirmed-border);">Calibrated</span>
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="selectMLAlgorithm">Classifier Algorithm (Slide 5 & 8)</label>
+          <label class="form-label" for="selectMLAlgorithm">Classifier Algorithm</label>
           <select id="selectMLAlgorithm" class="select-custom">
-            <option value="rf">Random Forest Ensemble (Weka / Tribuo)</option>
-            <option value="svm">Support Vector Machine (SVM)</option>
+            <option value="rf">Random Forest Ensemble (15 Trees)</option>
+            <option value="svm">Support Vector Machine (Margin)</option>
             <option value="mlp">Deep Neural Network (MLP)</option>
           </select>
         </div>
@@ -232,8 +232,8 @@
         </div>
 
         <button class="btn btn-secondary btn-full btn-sm" id="btnOpenModelSandbox" style="margin-top: 6px;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
-          Train & Evaluate Model Metrics
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+          Evaluate Model & Confusion Matrix
         </button>
       </section>
 
@@ -242,19 +242,19 @@
     <!-- Right Main Observatory Deck -->
     <section class="main-observatory">
 
-      <!-- Prediction Result Banner (Slide 5, 9, 10) -->
-      <section class="glass-panel prediction-banner candidate" id="predictionBanner">
+      <!-- Prediction Result Banner -->
+      <section class="prediction-banner candidate" id="predictionBanner">
         <div class="prediction-main">
           <div class="prediction-badge-row">
             <span class="prediction-badge badge-candidate" id="predictionBadge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
               <span id="predictionBadgeText">TRANSIT CANDIDATE</span>
             </span>
-            <span style="font-size: 0.8rem; color: var(--text-muted);" id="predictionTargetLabel">Target: Kepler-10 b</span>
+            <span style="font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-mono);" id="predictionTargetLabel">Target: Kepler-10 b</span>
           </div>
 
-          <h3 class="prediction-title" id="predictionHeadline">High-Confidence Planetary Transit Detected</h3>
-          <p style="font-size: 0.82rem; color: var(--text-secondary);" id="predictionDescription">
+          <h3 class="prediction-title" id="predictionHeadline">Confirmed Exoplanetary Transit Signal Detected</h3>
+          <p style="font-size: 0.8rem; color: var(--text-body);" id="predictionDescription">
             Light curve exhibits periodic flat-bottom dips characteristic of exoplanetary occultation with high signal-to-noise ratio.
           </p>
 
@@ -273,16 +273,16 @@
             <span class="confidence-value" id="confidenceValueText">94.2%</span>
           </div>
           <div class="confidence-meta">
-            <span class="confidence-label">Prediction Confidence</span>
+            <span class="confidence-label">Model Confidence</span>
             <span class="algorithm-label" id="bannerAlgoLabel">Random Forest</span>
-            <span style="font-size: 0.7rem; color: var(--accent-success); font-family: var(--font-mono);" id="rankingScoreText">Rank: #1 Exoplanet</span>
+            <span style="font-size: 0.7rem; color: var(--status-confirmed); font-family: var(--font-mono);" id="rankingScoreText">Rank: #1 Exoplanet</span>
           </div>
         </div>
       </section>
 
       <!-- Light Curve Studio (Interactive Plotting) -->
-      <section class="glass-panel studio-card">
-        <div class="studio-header">
+      <section class="card-panel">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
           <div class="chart-tabs" role="tablist">
             <button class="chart-tab-btn active" data-tab="lightcurve">Light Curve (Time vs Flux)</button>
             <button class="chart-tab-btn" data-tab="folded">Phase-Folded Curve</button>
@@ -291,11 +291,11 @@
 
           <div class="chart-actions">
             <button class="btn btn-secondary btn-sm" id="btnZoomIn" title="Zoom in on transit dips">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
               Zoom In
             </button>
             <button class="btn btn-secondary btn-sm" id="btnResetZoom" title="Reset view">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg>
               Reset
             </button>
           </div>
@@ -313,17 +313,17 @@
         </div>
       </section>
 
-      <!-- Output Split: Extracted Features Table & Transit Physical Simulator (Slide 10) -->
+      <!-- Output Split: Extracted Features Table & Transit Physical Simulator -->
       <section class="output-split-row">
 
         <!-- Extracted Features Table -->
-        <div class="glass-panel sidebar-card">
+        <div class="card-panel">
           <div class="card-header">
             <h2 class="card-title">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
               Extracted Transit Features
             </h2>
-            <span class="status-pill">Slide 5 & 10</span>
+            <span class="status-pill">Parameters</span>
           </div>
 
           <div class="features-table-wrap">
@@ -331,8 +331,8 @@
               <thead>
                 <tr>
                   <th>Feature</th>
-                  <th>Extracted Value</th>
-                  <th>Significance</th>
+                  <th>Value</th>
+                  <th>Definition</th>
                 </tr>
               </thead>
               <tbody id="featuresTableBody">
@@ -344,7 +344,7 @@
                 <tr>
                   <td class="feature-name">Transit Duration</td>
                   <td class="feature-val" id="featTransitDuration">1.82 hours</td>
-                  <td style="color: var(--text-muted); font-size: 0.72rem;">Chord transit time</td>
+                  <td style="color: var(--text-muted); font-size: 0.72rem;">Occultation duration</td>
                 </tr>
                 <tr>
                   <td class="feature-name">Transit Period (P)</td>
@@ -354,12 +354,12 @@
                 <tr>
                   <td class="feature-name">Signal-to-Noise (SNR)</td>
                   <td class="feature-val" id="featSnr">12.6</td>
-                  <td style="color: var(--text-muted); font-size: 0.72rem;">Detection significance (&gt;3.0)</td>
+                  <td style="color: var(--text-muted); font-size: 0.72rem;">Significance score (&gt;3.0)</td>
                 </tr>
                 <tr>
                   <td class="feature-name">Number of Dips</td>
                   <td class="feature-val" id="featDipCount">11 dips</td>
-                  <td style="color: var(--text-muted); font-size: 0.72rem;">Observed transit events</td>
+                  <td style="color: var(--text-muted); font-size: 0.72rem;">Occultation events</td>
                 </tr>
                 <tr>
                   <td class="feature-name">Mean / Min Flux</td>
@@ -382,13 +382,13 @@
         </div>
 
         <!-- Physical Transit Simulator -->
-        <div class="glass-panel sidebar-card simulator-box">
+        <div class="card-panel simulator-box">
           <div class="card-header">
             <h2 class="card-title">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-              Detected Transit Simulator
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+              Optical Transit Aperture
             </h2>
-            <span class="status-pill" style="color: var(--accent-stellar);">Limb-Darkened 2D/3D</span>
+            <span class="status-pill">Limb-Darkened Model</span>
           </div>
 
           <div class="simulator-canvas-wrap">
@@ -398,21 +398,21 @@
           <div class="sim-controls-toolbar">
             <div class="sim-playback-btns">
               <button class="btn btn-secondary btn-sm" id="btnToggleSimPlay" title="Play/Pause">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
                 Pause
               </button>
               <button class="btn btn-secondary btn-sm" id="btnResetSimPhase" title="Restart Transit">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
               </button>
             </div>
 
             <div class="sim-scrub-group">
-              <span style="font-size: 0.7rem; color: var(--text-muted);">Phase:</span>
+              <span style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Phase:</span>
               <input type="range" id="rangeSimScrub" class="range-input" min="0" max="1" step="0.005" value="0.15">
             </div>
 
             <div style="display: flex; align-items: center; gap: 4px;">
-              <span style="font-size: 0.7rem; color: var(--text-muted);">Speed:</span>
+              <span style="font-size: 0.7rem; color: var(--text-muted); font-weight: 600;">Speed:</span>
               <select id="selectSimSpeed" class="select-custom" style="padding: 2px 6px; font-size: 0.72rem; width: auto;">
                 <option value="0.04">0.5x</option>
                 <option value="0.08" selected>1.0x</option>
@@ -428,20 +428,19 @@
 
   </main>
 
-  <!-- MODAL 1: Project Proposal & Slide Deck Context -->
+  <!-- MODAL 1: Project Presentation & Architecture -->
   <div class="modal-overlay" id="modalProposal">
     <div class="modal-card">
       <div class="modal-header">
-        <h3 class="modal-title">Project Presentation & Architecture Explorer</h3>
+        <h3 class="modal-title">Research Presentation & System Architecture</h3>
         <button class="modal-close-btn" id="btnCloseProposal">&times;</button>
       </div>
       <div class="modal-body">
         
-        <!-- Authors Banner (Slide 1) -->
-        <div style="background: rgba(0, 242, 254, 0.05); border: 1px solid rgba(0, 242, 254, 0.2); padding: 16px; border-radius: var(--radius-md);">
-          <h4 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 6px;">Exoplanet Hunter: ML-Based Transit Detection Using Real NASA Kepler/TESS Data</h4>
-          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px;">
-            Research project proposal demonstrating the automatic classification and extraction of exoplanetary transit signatures from astronomical photometric time-series.
+        <div style="background: var(--bg-subtle); border: 1px solid var(--border-hairline); padding: 14px; border-radius: var(--radius-sm);">
+          <h4 style="color: var(--text-heading); font-size: 0.95rem; margin-bottom: 4px; font-weight: 700;">Exoplanet Hunter: ML-Based Transit Detection Using NASA Kepler/TESS Data</h4>
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px;">
+            Academic research project demonstrating automatic classification and extraction of exoplanetary transit signatures from astronomical time-series.
           </p>
           <div class="project-authors-grid">
             <div class="author-card">
@@ -459,102 +458,90 @@
           </div>
         </div>
 
-        <!-- Proposed System Architecture Flowchart (Slide 5) -->
+        <!-- Proposed Architecture Flowchart -->
         <div>
-          <h4 style="font-size: 0.95rem; margin-bottom: 10px; color: var(--text-primary);">Proposed System Architecture (Slide 5 Flow)</h4>
+          <h4 style="font-size: 0.88rem; margin-bottom: 8px; color: var(--text-heading); font-weight: 700;">Proposed Pipeline Flow</h4>
           <div class="flowchart-container">
             <div class="flowchart-row">
               <div class="flow-step-box primary">
-                <span class="flow-step-title">1. Data Acquisition</span>
-                <span class="flow-step-desc">NASA Kepler & TESS archives via MAST (Time vs Flux)</span>
+                <span class="flow-step-title">1. Data Ingestion</span>
+                <span class="flow-step-desc">Kepler & TESS MAST archives (Time vs Flux)</span>
               </div>
               <div class="flow-step-box green">
                 <span class="flow-step-title">2. Preprocessing</span>
-                <span class="flow-step-desc">NaN removal, sigma clipping, normalization, detrending</span>
+                <span class="flow-step-desc">NaN removal, sigma clipping, normalization</span>
               </div>
               <div class="flow-step-box purple">
                 <span class="flow-step-title">3. Feature Extraction</span>
-                <span class="flow-step-desc">Depth, duration, BLS period, SNR, dip count, U-shape</span>
+                <span class="flow-step-desc">Depth, duration, BLS period, SNR, U-shape</span>
               </div>
               <div class="flow-step-box orange">
                 <span class="flow-step-title">4. ML Classifier</span>
-                <span class="flow-step-desc">Random Forest / SVM / MLP neural net candidate prediction</span>
+                <span class="flow-step-desc">Random Forest / SVM / MLP candidate prediction</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Problem Statement & Objectives (Slide 3 & 4) -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 14px; border-radius: var(--radius-sm);">
-            <h5 style="color: var(--accent-stellar); font-size: 0.85rem; margin-bottom: 6px;">Problem Statement (Slide 3)</h5>
-            <p style="font-size: 0.78rem; color: var(--text-secondary);">
-              Missions like Kepler and TESS generate terabytes of stellar brightness data. Manually inspecting light curves is time-consuming, difficult for large catalogs, sensitive to noise, and hard to automate without machine learning.
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div style="background: var(--bg-subtle); border: 1px solid var(--border-hairline); padding: 12px; border-radius: var(--radius-sm);">
+            <h5 style="color: var(--brand-solar); font-size: 0.8rem; margin-bottom: 4px; font-weight: 700;">Problem Statement</h5>
+            <p style="font-size: 0.74rem; color: var(--text-body);">
+              Missions generate massive photometric data. Manual vetting is time-consuming, difficult for large catalogs, sensitive to noise, and vulnerable to eclipsing binary false positives.
             </p>
           </div>
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 14px; border-radius: var(--radius-sm);">
-            <h5 style="color: var(--accent-cyan); font-size: 0.85rem; margin-bottom: 6px;">Project Objectives (Slide 4)</h5>
-            <p style="font-size: 0.78rem; color: var(--text-secondary);">
-              1. Ingest real NASA light-curve data.<br>
-              2. Normalize and condition photometric time series.<br>
+          <div style="background: var(--bg-subtle); border: 1px solid var(--border-hairline); padding: 12px; border-radius: var(--radius-sm);">
+            <h5 style="color: var(--text-heading); font-size: 0.8rem; margin-bottom: 4px; font-weight: 700;">Project Objectives</h5>
+            <p style="font-size: 0.74rem; color: var(--text-body);">
+              1. Ingest real NASA light curves.<br>
+              2. Normalize & condition photometric data.<br>
               3. Extract physical transit parameters.<br>
               4. Classify candidates with confidence scoring.
             </p>
           </div>
         </div>
 
-        <!-- Future Scope (Slide 11) -->
-        <div style="background: rgba(168, 85, 247, 0.05); border: 1px solid rgba(168, 85, 247, 0.2); padding: 14px; border-radius: var(--radius-sm);">
-          <h5 style="color: var(--accent-purple); font-size: 0.85rem; margin-bottom: 6px;">Future Scope Implemented in this Web App (Slide 11)</h5>
-          <ul style="font-size: 0.78rem; color: var(--text-secondary); margin-left: 18px; line-height: 1.6;">
-            <li>Multi-mission compatibility: Full support for both NASA Kepler and TESS mission datasets.</li>
-            <li>Deep learning neural network classifier option alongside Random Forest and SVM.</li>
-            <li>Interactive candidate ranking algorithm based on composite SNR and U-shape score.</li>
-            <li>Custom CSV/FITS upload and real-time physical transit simulator.</li>
-          </ul>
-        </div>
-
       </div>
     </div>
   </div>
 
-  <!-- MODAL 2: Model Training Sandbox & Metrics -->
+  <!-- MODAL 2: Model Sandbox & Confusion Matrix -->
   <div class="modal-overlay" id="modalSandbox">
     <div class="modal-card">
       <div class="modal-header">
-        <h3 class="modal-title">ML Model Training Sandbox & Performance Metrics</h3>
+        <h3 class="modal-title">ML Model Performance & Confusion Matrix</h3>
         <button class="modal-close-btn" id="btnCloseSandbox">&times;</button>
       </div>
       <div class="modal-body">
-        <p style="font-size: 0.82rem; color: var(--text-secondary);">
-          Evaluate classifier performance trained on 100 Kepler & TESS transit benchmarks (50 confirmed exoplanets vs 50 eclipsing binaries and stellar noise false-positives).
+        <p style="font-size: 0.78rem; color: var(--text-muted);">
+          Evaluated against 100 benchmark observational series (50 confirmed exoplanets vs. 50 eclipsing binaries and stellar noise events).
         </p>
 
         <!-- Metrics cards row -->
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 12px; border-radius: var(--radius-sm); text-align: center;">
-            <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Accuracy</div>
-            <div style="font-size: 1.35rem; font-weight: 700; color: var(--accent-success); font-family: var(--font-mono);" id="metricAccuracy">96.0%</div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+          <div style="background: var(--bg-subtle); border: 1px solid var(--border-hairline); padding: 10px; border-radius: var(--radius-sm); text-align: center;">
+            <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Accuracy</div>
+            <div style="font-size: 1.25rem; font-weight: 700; color: var(--status-confirmed); font-family: var(--font-mono);" id="metricAccuracy">96.0%</div>
           </div>
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 12px; border-radius: var(--radius-sm); text-align: center;">
-            <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Precision</div>
-            <div style="font-size: 1.35rem; font-weight: 700; color: var(--accent-cyan); font-family: var(--font-mono);" id="metricPrecision">95.8%</div>
+          <div style="background: var(--bg-subtle); border: 1px solid var(--border-hairline); padding: 10px; border-radius: var(--radius-sm); text-align: center;">
+            <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Precision</div>
+            <div style="font-size: 1.25rem; font-weight: 700; color: var(--text-heading); font-family: var(--font-mono);" id="metricPrecision">95.8%</div>
           </div>
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 12px; border-radius: var(--radius-sm); text-align: center;">
-            <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Recall</div>
-            <div style="font-size: 1.35rem; font-weight: 700; color: var(--accent-purple); font-family: var(--font-mono);" id="metricRecall">96.2%</div>
+          <div style="background: var(--bg-subtle); border: 1px solid var(--border-hairline); padding: 10px; border-radius: var(--radius-sm); text-align: center;">
+            <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">Recall</div>
+            <div style="font-size: 1.25rem; font-weight: 700; color: var(--text-heading); font-family: var(--font-mono);" id="metricRecall">96.2%</div>
           </div>
-          <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 12px; border-radius: var(--radius-sm); text-align: center;">
-            <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">F1-Score</div>
-            <div style="font-size: 1.35rem; font-weight: 700; color: var(--accent-stellar); font-family: var(--font-mono);" id="metricF1">96.0%</div>
+          <div style="background: var(--bg-subtle); border: 1px solid var(--border-hairline); padding: 10px; border-radius: var(--radius-sm); text-align: center;">
+            <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; font-weight: 600;">F1-Score</div>
+            <div style="font-size: 1.25rem; font-weight: 700; color: var(--brand-solar); font-family: var(--font-mono);" id="metricF1">96.0%</div>
           </div>
         </div>
 
         <!-- Confusion Matrix & Feature Weights -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
           <div>
-            <h5 style="font-size: 0.85rem; margin-bottom: 8px; color: var(--text-primary);">Confusion Matrix</h5>
-            <table class="features-table" style="border: 1px solid var(--border-subtle); text-align: center;">
+            <h5 style="font-size: 0.8rem; margin-bottom: 6px; color: var(--text-heading); font-weight: 700;">Confusion Matrix</h5>
+            <table class="features-table" style="border: 1px solid var(--border-hairline); text-align: center;">
               <thead>
                 <tr>
                   <th></th>
@@ -565,66 +552,66 @@
               <tbody>
                 <tr>
                   <td style="font-weight: 600;">Actual Exoplanet</td>
-                  <td style="color: var(--accent-success); font-weight: bold;" id="cellTP">48 (TP)</td>
-                  <td style="color: var(--accent-danger);" id="cellFN">2 (FN)</td>
+                  <td style="color: var(--status-confirmed); font-weight: bold;" id="cellTP">48 (TP)</td>
+                  <td style="color: var(--status-rejected);" id="cellFN">2 (FN)</td>
                 </tr>
                 <tr>
                   <td style="font-weight: 600;">Actual Non-Transit</td>
-                  <td style="color: var(--accent-danger);" id="cellFP">2 (FP)</td>
-                  <td style="color: var(--accent-success); font-weight: bold;" id="cellTN">48 (TN)</td>
+                  <td style="color: var(--status-rejected);" id="cellFP">2 (FP)</td>
+                  <td style="color: var(--status-confirmed); font-weight: bold;" id="cellTN">48 (TN)</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           <div>
-            <h5 style="font-size: 0.85rem; margin-bottom: 8px; color: var(--text-primary);">Feature Importance Weights</h5>
+            <h5 style="font-size: 0.8rem; margin-bottom: 6px; color: var(--text-heading); font-weight: 700;">Feature Importance Distribution</h5>
             <div style="display: flex; flex-direction: column; gap: 6px;">
               <div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.74rem;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.72rem;">
                   <span>Signal-to-Noise Ratio (SNR)</span>
-                  <span style="font-family: var(--font-mono); color: var(--accent-cyan);">32%</span>
+                  <span style="font-family: var(--font-mono); color: var(--brand-solar); font-weight: 600;">32%</span>
                 </div>
-                <div style="height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; margin-top: 2px;">
-                  <div style="width: 32%; height: 100%; background: var(--accent-cyan);"></div>
+                <div style="height: 5px; background: #e2e8f0; border-radius: 2px; overflow: hidden; margin-top: 2px;">
+                  <div style="width: 32%; height: 100%; background: var(--brand-solar);"></div>
                 </div>
               </div>
 
               <div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.74rem;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.72rem;">
                   <span>Transit Depth</span>
-                  <span style="font-family: var(--font-mono); color: var(--accent-cyan);">26%</span>
+                  <span style="font-family: var(--font-mono); color: var(--brand-solar); font-weight: 600;">26%</span>
                 </div>
-                <div style="height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; margin-top: 2px;">
-                  <div style="width: 26%; height: 100%; background: var(--accent-cyan);"></div>
-                </div>
-              </div>
-
-              <div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.74rem;">
-                  <span>U-Shape Profile Factor (Binary rejection)</span>
-                  <span style="font-family: var(--font-mono); color: var(--accent-cyan);">22%</span>
-                </div>
-                <div style="height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; margin-top: 2px;">
-                  <div style="width: 22%; height: 100%; background: var(--accent-cyan);"></div>
+                <div style="height: 5px; background: #e2e8f0; border-radius: 2px; overflow: hidden; margin-top: 2px;">
+                  <div style="width: 26%; height: 100%; background: var(--brand-solar);"></div>
                 </div>
               </div>
 
               <div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.74rem;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.72rem;">
+                  <span>U-Shape Profile Factor</span>
+                  <span style="font-family: var(--font-mono); color: var(--brand-solar); font-weight: 600;">22%</span>
+                </div>
+                <div style="height: 5px; background: #e2e8f0; border-radius: 2px; overflow: hidden; margin-top: 2px;">
+                  <div style="width: 22%; height: 100%; background: var(--brand-solar);"></div>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.72rem;">
                   <span>Dip Count & Periodicity</span>
-                  <span style="font-family: var(--font-mono); color: var(--accent-cyan);">12%</span>
+                  <span style="font-family: var(--font-mono); color: var(--brand-solar); font-weight: 600;">12%</span>
                 </div>
-                <div style="height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; margin-top: 2px;">
-                  <div style="width: 12%; height: 100%; background: var(--accent-cyan);"></div>
+                <div style="height: 5px; background: #e2e8f0; border-radius: 2px; overflow: hidden; margin-top: 2px;">
+                  <div style="width: 12%; height: 100%; background: var(--brand-solar);"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <button class="btn btn-primary btn-full" id="btnRetrainModel" style="margin-top: 10px;">
-          Re-train Random Forest On Benchmark
+        <button class="btn btn-primary btn-full" id="btnRetrainModel" style="margin-top: 8px;">
+          Re-train Classifier On Benchmark
         </button>
       </div>
     </div>
@@ -638,11 +625,11 @@
         <button class="modal-close-btn" id="btnCloseSynthetic">&times;</button>
       </div>
       <div class="modal-body">
-        <p style="font-size: 0.82rem; color: var(--text-secondary);">
+        <p style="font-size: 0.78rem; color: var(--text-muted);">
           Simulate a custom exoplanetary system using the Mandel & Agol transit model with limb darkening and photometric Gaussian noise.
         </p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
           <div class="form-group">
             <div style="display: flex; justify-content: space-between;">
               <span class="form-label">Orbital Period (Days)</span>
@@ -669,7 +656,7 @@
 
           <div class="form-group">
             <div style="display: flex; justify-content: space-between;">
-              <span class="form-label">Photometric Noise Level</span>
+              <span class="form-label">Photometric Noise</span>
               <span class="range-val" id="synthNoiseVal">0.04%</span>
             </div>
             <input type="range" id="synthNoiseRange" class="range-input" min="0.01" max="0.2" step="0.01" value="0.04">
